@@ -13,3 +13,13 @@ class UserCreationFailedAction {
   final String errorMessage;
   const UserCreationFailedAction(this.errorMessage);
 }
+
+class UserLoginDoneAction {
+  final User user;
+  const UserLoginDoneAction(this.user);
+}
+
+class UserLoginFailedAction {
+  final String errorMessage;
+  const UserLoginFailedAction(this.errorMessage);
+}

@@ -5,20 +5,20 @@ import 'package:idle_rpg_flutter/redux/auth/models/user.dart';
 import '../exceptions.dart';
 
 class FakeUserGateway implements UserGateway {
-  String? accessToken;
-  Map<String, User> users = {};
+  User? _currentUser;
+  final Map<String, User> _users = {};
 
   FakeUserGateway();
 
   @override
   Future<void> createUser(CreateUserCommand command) async {
-    final bool userExists = users.values.any((element) => element.email == command.email);
+    final bool userExists = _users.values.any((element) => element.email == command.email);
 
     if (userExists) {
       throw const UserCreationException("User with this email already exists");
     }
 
-    users[command.password] = User(
+    _users[command.password] = User(
       firstname: command.firstname,
       lastname: command.lastname,
       email: command.email,
@@ -28,10 +28,11 @@ class FakeUserGateway implements UserGateway {
   @override
   Future<void> login(String email, String password) async {
     try {
-      final User user = users.entries
+      final User user = _users.entries
           .firstWhere((entry) => entry.key == password && entry.value.email == email)
           .value;
-      accessToken = "${user.email}-${user.firstname}";
+
+      _currentUser = user;
     } on StateError catch (_) {
       throw const InvalidCredentialsException("Invalid credentials");
     }
@@ -39,11 +40,10 @@ class FakeUserGateway implements UserGateway {
 
   @override
   Future<User> me() async {
-    final User? user = users[accessToken!];
-    if (user == null) {
+    if (_currentUser == null) {
       throw const InvalidCredentialsException("Invalid access token");
     }
 
-    return user;
+    return _currentUser!;
   }
 }

@@ -3,11 +3,21 @@ import 'package:idle_rpg_flutter/app/pages/auth/register_page.dart';
 import 'package:idle_rpg_flutter/app/pages/auth/widgets/form_container.dart';
 import 'package:idle_rpg_flutter/app/pages/page_layout.dart';
 import 'package:idle_rpg_flutter/app/ui/ui.dart';
+import 'package:idle_rpg_flutter/app/widgets/core.dart';
 
-class LoginPage extends StatelessWidget {
+import 'controllers/login_page_controller.dart';
+
+class LoginPage extends StatefulWidget {
   static const String routeName = '/login';
 
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => LoginPageController();
+}
+
+class LoginPageView extends WidgetView<LoginPage, LoginPageController> {
+  const LoginPageView(LoginPageController controller, {Key? key}) : super(controller, key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +26,15 @@ class LoginPage extends StatelessWidget {
         title: 'Connexion',
         child: Column(
           children: [
-            const UITextField(label: 'Email'),
+            UITextField(
+              controller: controller.emailController,
+              label: 'Email',
+            ),
             const SizedBox(height: 10),
-            const UITextField(label: 'Mot de passe'),
+            UITextField(
+              controller: controller.passwordController,
+              label: 'Mot de passe',
+            ),
             const SizedBox(height: 50),
             UIPrimaryButton(
               label: 'Se connecter',
@@ -29,7 +45,7 @@ class LoginPage extends StatelessWidget {
               child: UITextButton(
                 label: "Je n'ai pas encore de compte",
                 onPressed: () {
-                  Navigator.pushNamed(context, RegisterPage.routeName);
+                  controller.navigateToRegistration(context);
                 },
               ),
             )

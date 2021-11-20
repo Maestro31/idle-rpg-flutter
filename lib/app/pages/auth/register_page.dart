@@ -3,6 +3,7 @@ import 'package:idle_rpg_flutter/app/pages/auth/widgets/form_container.dart';
 import 'package:idle_rpg_flutter/app/ui/ui.dart';
 
 import 'package:idle_rpg_flutter/app/pages/page_layout.dart';
+import 'package:idle_rpg_flutter/app/validators/validators.dart';
 import 'package:idle_rpg_flutter/app/widgets/core.dart';
 
 import 'controllers/register_page_controller.dart';
@@ -32,25 +33,25 @@ class RegisterPageView extends WidgetView<RegisterPage, RegisterPageController> 
               UITextField(
                 controller: controller.firstnameController,
                 label: 'Prénom',
-                validator: controller.minLengthValidator(3),
+                validator: minLengthValidator(3),
               ),
               const SizedBox(height: 10),
               UITextField(
                 controller: controller.lastnameController,
                 label: 'Nom',
-                validator: controller.minLengthValidator(3),
+                validator: minLengthValidator(3),
               ),
               const SizedBox(height: 10),
               UITextField(
                 controller: controller.emailController,
                 label: 'Email',
-                validator: controller.emailValidator,
+                validator: emailValidator,
               ),
               const SizedBox(height: 50),
               UITextField(
                 controller: controller.passwordController,
                 label: 'Mot de passe',
-                validator: controller.passwordValidator,
+                validator: passwordValidator,
                 obscureText: true,
               ),
               const SizedBox(height: 10),

@@ -1,3 +1,4 @@
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:idle_rpg_flutter/redux/auth/models/models.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,19 @@ class AuthState {
       : user = null,
         status = AuthStatus.idle,
         errorMessage = null;
+
+  AuthState.fromJson(Map<String, dynamic> json)
+      : user = json['user'],
+        status = json['status'] != null
+            ? EnumToString.fromString(AuthStatus.values, json['status'])!
+            : AuthStatus.idle,
+        errorMessage = json['errorMessage'];
+
+  Map<String, dynamic> toJson() => {
+        'user': user?.toJson(),
+        'status': EnumToString.convertToString(status),
+        'errorMessage': errorMessage,
+      };
 
   AuthState copyWith({
     User? user,
