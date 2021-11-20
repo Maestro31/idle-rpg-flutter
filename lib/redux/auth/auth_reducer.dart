@@ -8,6 +8,8 @@ final authReducer = combineReducers<AuthState>([
   TypedReducer<AuthState, StartLoadingAction>(_startLoading),
   TypedReducer<AuthState, DisconnectAction>(_disconnect),
   TypedReducer<AuthState, UserCreationFailedAction>(_userCreationFailed),
+  TypedReducer<AuthState, UserLoginDoneAction>(_userLoginDone),
+  TypedReducer<AuthState, UserLoginFailedAction>(_userLoginFailed),
 ]);
 
 AuthState _userCreationDone(AuthState state, UserCreationDoneAction action) {
@@ -27,6 +29,21 @@ AuthState _disconnect(AuthState state, DisconnectAction action) {
 }
 
 AuthState _userCreationFailed(AuthState state, UserCreationFailedAction action) {
+  return AuthState.initialState().copyWith(
+    status: AuthStatus.disconnected,
+    errorMessage: action.errorMessage,
+  );
+}
+
+AuthState _userLoginDone(AuthState state, UserLoginDoneAction action) {
+  return AuthState(
+    user: action.user,
+    status: AuthStatus.connected,
+    errorMessage: null,
+  );
+}
+
+AuthState _userLoginFailed(AuthState state, UserLoginFailedAction action) {
   return AuthState.initialState().copyWith(
     status: AuthStatus.disconnected,
     errorMessage: action.errorMessage,

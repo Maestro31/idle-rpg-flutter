@@ -12,21 +12,22 @@ class InMemoryUserGateway implements UserGateway {
 
   @override
   Future<void> createUser(CreateUserCommand command) async {
-    if (exceptionToRaise != null) {
-      throw exceptionToRaise!;
-    }
-
+    _raiseIfRequested();
     lastCreateUserCommand = command;
   }
 
   @override
   Future<void> login(String email, String password) async {
+    _raiseIfRequested();
+
     lastLoginEmail = email;
     lastLoginPassword = password;
   }
 
   @override
   Future<User> me() async {
+    _raiseIfRequested();
+
     return currentUser!;
   }
 
@@ -36,5 +37,11 @@ class InMemoryUserGateway implements UserGateway {
 
   shouldReturnMeWith(User user) {
     currentUser = user;
+  }
+
+  _raiseIfRequested() {
+    if (exceptionToRaise != null) {
+      throw exceptionToRaise!;
+    }
   }
 }
