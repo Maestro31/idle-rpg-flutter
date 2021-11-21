@@ -6,7 +6,9 @@ import '../exceptions.dart';
 
 class FakeUserGateway implements UserGateway {
   User? _currentUser;
-  final Map<String, User> _users = {};
+  final Map<String, User> _users = {
+    "Test1234": User(email: "test@test.fr", firstname: "John", lastname: "Doe"),
+  };
 
   FakeUserGateway();
 
@@ -27,15 +29,12 @@ class FakeUserGateway implements UserGateway {
 
   @override
   Future<void> login(String email, String password) async {
-    try {
-      final User user = _users.entries
-          .firstWhere((entry) => entry.key == password && entry.value.email == email)
-          .value;
+    final User? user = _users[password];
 
-      _currentUser = user;
-    } on StateError catch (_) {
+    if (user == null || user.email != email) {
       throw const InvalidCredentialsException("Invalid credentials");
     }
+    _currentUser = user;
   }
 
   @override

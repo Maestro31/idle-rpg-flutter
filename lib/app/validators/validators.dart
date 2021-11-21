@@ -32,3 +32,11 @@ String? Function(String?) minLengthValidator(int count) {
     return null;
   };
 }
+
+String? notBlankValidator(String? value) {
+  if (value == null || value.isEmpty) {
+    return "Field cannot be blank";
+  }
+
+  return null;
+}

@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: NavigatorHolder.navigatorKey,
-      initialRoute: '/register',
+      initialRoute: HomePage.routeName,
       theme: AppTheme.lightTheme,
       routes: {
-        '/': (context) => const HomePage(),
-        '/register': (context) => const RegisterPage(),
-        '/login': (context) => const LoginPage(),
+        HomePage.routeName: (context) => const HomePage(),
+        RegisterPage.routeName: (context) => const RegisterPage(),
+        LoginPage.routeName: (context) => const LoginPage(),
       },
     );
   }
