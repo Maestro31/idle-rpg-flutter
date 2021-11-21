@@ -58,7 +58,7 @@ class RegisterPageController extends State<RegisterPage> {
     _createUser(command);
   }
 
-  void navigateToLogin(BuildContext context) {
+  void navigateToLogin() {
     Navigator.pushNamed(context, LoginPage.routeName);
   }
 

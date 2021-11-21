@@ -70,9 +70,7 @@ class RegisterPageView extends WidgetView<RegisterPage, RegisterPageController> 
               Center(
                 child: UITextButton(
                   label: "J'ai déjà un compte",
-                  onPressed: () {
-                    controller.navigateToLogin(context);
-                  },
+                  onPressed: controller.navigateToLogin,
                 ),
               )
             ],
