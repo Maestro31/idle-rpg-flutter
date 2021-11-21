@@ -1,4 +1,3 @@
-import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 import 'package:idle_rpg_flutter/dependencies.dart';
 import 'package:idle_rpg_flutter/redux/app_reducer.dart';
 
@@ -12,7 +11,6 @@ Store<AppState> configureStore(Dependencies dependencies) {
     initialState: AppState.initialState(),
     middleware: [
       ExtraArgumentThunkMiddleware<AppState, Dependencies>(dependencies),
-      const NavigationMiddleware<AppState>(),
     ],
   );
 

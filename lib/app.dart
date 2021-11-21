@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux_navigation/flutter_redux_navigation.dart';
 
 import 'package:idle_rpg_flutter/app/pages/auth/register_page.dart';
 import 'package:idle_rpg_flutter/app/themes/theme.dart';
@@ -13,7 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: NavigatorHolder.navigatorKey,
       initialRoute: HomePage.routeName,
       theme: AppTheme.lightTheme,
       routes: {
