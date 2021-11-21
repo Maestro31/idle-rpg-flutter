@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idle_rpg_flutter/app/containers/private_page.dart';
 import 'package:idle_rpg_flutter/app/pages/page_layout.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,6 +9,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageLayout(child: Container());
+    return const PrivatePage(
+      backRouteName: routeName,
+      child: PageLayout(child: Text("Home page")),
+    );
   }
 }
