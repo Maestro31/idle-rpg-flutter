@@ -11,16 +11,15 @@ import '../exceptions.dart';
 
 ThunkActionWithExtraArgument<AppState, Dependencies> loginUser(LoginUserCommand command) {
   return (Store<AppState> store, Dependencies dependencies) async {
-    store.dispatch(StartLoadingAction());
-
     UserGateway userGateway = dependencies.userGateway!;
 
     try {
       await userGateway.login(command.email, command.password);
       User user = await userGateway.me();
       store.dispatch(UserLoginDoneAction(user));
-    } on InvalidCredentialsException catch (e) {
-      store.dispatch(UserLoginFailedAction(e.toString()));
+    } on InvalidCredentialsException catch (_) {
+      store
+          .dispatch(const UserLoginFailedAction("L'utilisateur ou le mot de passe est incorrect."));
     }
   };
 }

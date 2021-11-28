@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idle_rpg_flutter/app/pages/auth/widgets/form_container.dart';
-import 'package:idle_rpg_flutter/app/pages/page_layout.dart';
+import 'package:idle_rpg_flutter/app/containers/page_layout.dart';
 import 'package:idle_rpg_flutter/app/ui/ui.dart';
 import 'package:idle_rpg_flutter/app/validators/validators.dart';
 import 'package:idle_rpg_flutter/app/widgets/core.dart';
@@ -46,7 +46,13 @@ class LoginPageView extends WidgetView<LoginPage, LoginPageController> {
                 validator: notBlankValidator,
                 obscureText: true,
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 40),
+              Column(
+                children: [
+                  Text(controller.errorMessage != null ? controller.errorMessage! : ""),
+                  const SizedBox(height: 10),
+                ],
+              ),
               UIPrimaryButton(
                 label: 'Se connecter',
                 onPressed: controller.handleSubmitLogin,

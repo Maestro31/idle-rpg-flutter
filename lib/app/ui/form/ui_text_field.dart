@@ -24,6 +24,7 @@ class UITextField extends StatelessWidget {
     return Theme(
         data: theme,
         child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
             filled: true,
             fillColor: CustomColors.lightBrown1,

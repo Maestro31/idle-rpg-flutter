@@ -22,6 +22,9 @@ class LoginPageController extends State<LoginPage> {
 
   late bool _isAuthenticated;
   late Function(LoginUserCommand) _loginUser;
+  String? _errorMessage;
+
+  get errorMessage => _errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +49,7 @@ class LoginPageController extends State<LoginPage> {
     _loginUser = (command) {
       store.dispatch(action.loginUser(command));
     };
+    _errorMessage = store.state.auth.errorMessage;
   }
 
   void navigateToRegistration() {

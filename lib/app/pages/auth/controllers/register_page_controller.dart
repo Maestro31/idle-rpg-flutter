@@ -23,6 +23,10 @@ class RegisterPageController extends State<RegisterPage> {
   late bool _isAuthenticated;
   late Function(CreateUserCommand) _createUser;
 
+  String? _errorMessage;
+
+  get errorMessage => _errorMessage;
+
   @override
   Widget build(BuildContext context) => StoreConnector<AppState, void>(
         converter: _connect,
@@ -41,9 +45,10 @@ class RegisterPageController extends State<RegisterPage> {
     _createUser = (command) {
       store.dispatch(action.createUser(command));
     };
+    _errorMessage = store.state.auth.errorMessage;
   }
 
-  handleRegistration() {
+  void handleRegistration() {
     if (!formKey.currentState!.validate()) {
       return;
     }

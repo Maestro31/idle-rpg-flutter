@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:idle_rpg_flutter/core/auth/commands/login_user_command.dart';
 import 'package:idle_rpg_flutter/core/auth/exceptions.dart';
@@ -45,7 +43,7 @@ void main() {
         store.state.auth,
         equals(
           const AuthState(
-            errorMessage: "InvalidCredentialsException: Error message",
+            errorMessage: "L'utilisateur ou le mot de passe est incorrect.",
             user: null,
             status: AuthStatus.disconnected,
           ),
