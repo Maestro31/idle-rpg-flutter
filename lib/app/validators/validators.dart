@@ -23,15 +23,13 @@ String? passwordValidator(String? password) {
   return null;
 }
 
-String? Function(String?) minLengthValidator(int count) {
-  return (String? value) {
-    if (value == null || value.length < count) {
-      return 'Minimum length should be $count';
-    }
+String? Function(String?) minLengthValidator(int count) => (String? value) {
+      if (value == null || value.length < count) {
+        return 'Minimum length should be $count';
+      }
 
-    return null;
-  };
-}
+      return null;
+    };
 
 String? notBlankValidator(String? value) {
   if (value == null || value.isEmpty) {

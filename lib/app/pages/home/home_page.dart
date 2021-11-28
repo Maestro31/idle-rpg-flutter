@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idle_rpg_flutter/app/containers/private_page.dart';
-import 'package:idle_rpg_flutter/app/pages/page_layout.dart';
+import 'package:idle_rpg_flutter/app/containers/page_layout.dart';
 
 class HomePage extends StatelessWidget {
   static const String routeName = '/';

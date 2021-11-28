@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:idle_rpg_flutter/core/auth/commands/create_user_command.dart';
 import 'package:idle_rpg_flutter/core/auth/gateways/user_gateway.dart';
 import 'package:idle_rpg_flutter/dependencies.dart';
@@ -13,8 +11,6 @@ import '../exceptions.dart';
 
 ThunkActionWithExtraArgument<AppState, Dependencies> createUser(CreateUserCommand command) {
   return (Store<AppState> store, Dependencies dependencies) async {
-    store.dispatch(StartLoadingAction());
-
     UserGateway userGateway = dependencies.userGateway!;
 
     try {
